@@ -39,10 +39,19 @@ describe('test creating bouquets', () => {
             }
         }
     };
-    test('comparison with cparsed correct structure', () => {
+    test('comparison with parsed correct structure', () => {
         bloomonService.processInput('AS2a3b4c9');
         console.log(bloomonService.neededBouquets);
         expect(bloomonService.neededBouquets).toEqual(testNeededBouquets);
     });
 
+    test('create bouquet if the total quantity can be equal than the the sum of the flower quantities', () => {
+        bloomonService.processInput('AS2a3b4c9');
+        bloomonService.processInput('BS1a10b4c40');
+    });
+
+    test('create bouquet if the total quantity can be bigger than the the sum of the flower quantities', () => {
+        bloomonService.processInput('AS2a3b4c9');
+        bloomonService.processInput('BS1a10b4c40');
+    });
 });
