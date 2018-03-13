@@ -1,0 +1,13 @@
+{
+  "dependencies": {
+    "debug": "^3.1.0",
+    "split": "^1.0.1"
+  },
+  "scripts": {
+    "start": "node DEBUG=* node --inspect-brk index.js",
+    "test": "jest service.test.js"
+  },
+  "devDependencies": {
+    "jest": "^22.4.2"
+  }
+}
