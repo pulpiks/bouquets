@@ -18,10 +18,6 @@ const arr = [
 
 beforeEach(() => {
     bloomonService = new Service();
-
-    // arr.forEach(function (s) {
-    //     bloomonService.processInput(s);
-    // });
 });
 
 
@@ -39,19 +35,42 @@ describe('test creating bouquets', () => {
             }
         }
     };
-    test('comparison with parsed correct structure', () => {
+    test('check parsing input data to convenient structure', () => {
         bloomonService.processInput('AS2a3b4c9');
-        console.log(bloomonService.neededBouquets);
         expect(bloomonService.neededBouquets).toEqual(testNeededBouquets);
     });
 
     test('create bouquet if the total quantity can be equal than the the sum of the flower quantities', () => {
         bloomonService.processInput('AS2a3b4c9');
-        bloomonService.processInput('BS1a10b4c40');
+        bloomonService.processInput('');
+        bloomonService.processInput('aS');
+        bloomonService.processInput('aS');
+        bloomonService.processInput('bS');
+        bloomonService.processInput('bS');
+        bloomonService.processInput('bS');
+        bloomonService.processInput('cS');
+        bloomonService.processInput('cS');
+        bloomonService.processInput('cS');
+        bloomonService.processInput('cS');
+        expect(bloomonService.resultBouquets[bloomonService.resultBouquets.length-1])
+            .toEqual('ASa2b3c4');
     });
 
     test('create bouquet if the total quantity can be bigger than the the sum of the flower quantities', () => {
-        bloomonService.processInput('AS2a3b4c9');
-        bloomonService.processInput('BS1a10b4c40');
+        bloomonService.processInput('AS2a3b4c10');
+        bloomonService.processInput('');
+        bloomonService.processInput('aS');
+        bloomonService.processInput('aS');
+        bloomonService.processInput('bS');
+        bloomonService.processInput('bS');
+        bloomonService.processInput('bS');
+        bloomonService.processInput('cS');
+        bloomonService.processInput('cS');
+        bloomonService.processInput('cS');
+        bloomonService.processInput('cS');
+        bloomonService.processInput('dL');
+        bloomonService.processInput('eS');
+        expect(bloomonService.resultBouquets[bloomonService.resultBouquets.length-1])
+            .toEqual('ASa2b3c4e1');
     });
 });

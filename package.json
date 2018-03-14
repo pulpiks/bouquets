@@ -3,7 +3,7 @@
     "split": "^1.0.1"
   },
   "scripts": {
-    "start-crrome-debug": "node DEBUG=* node --inspect-brk index.js",
+    "start-crrome-debug": "node --inspect-brk index.js",
     "start": "node index.js",
     "test": "jest service.test.js"
   },

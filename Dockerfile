@@ -1,9 +1,16 @@
 FROM node:carbon
-WORKDIR /usr/src/app
-COPY package*.json ./
 
-RUN npm install
-COPY . .
 
-EXPOSE 8080
+RUN mkdir -p /srv/bloomon
+WORKDIR /srv/bloomon
+
+ADD package*.json /srv/bloomon/
+
+RUN npm i
+
+ADD . /srv/bloomon/
+
+ENV LC_ALL="C.utf-8" LANGUAGE="C.utf-8" LANG="C.utf-8" PORT=9081 DEBUG="*"
+
+EXPOSE 9081
 CMD [ "npm", "start" ]
