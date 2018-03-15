@@ -4,11 +4,16 @@
   },
   "scripts": {
     "start-crrome-debug": "node --inspect-brk index.js",
-    "start": "node index.js",
-    "test": "jest service.test.js"
+    "start": "npm run tsc && node dist/index.js",
+    "test": "jest service.test.js",
+    "tsc": "tsc"
   },
   "devDependencies": {
+    "@types/node": "^9.4.7",
     "debug": "^3.1.0",
-    "jest": "^22.4.2"
+    "jest": "^22.4.2",
+    "ts-node": "^5.0.1",
+    "typescript": "^2.7.2",
+    "typescript-eslint-parser": "^14.0.0"
   }
 }

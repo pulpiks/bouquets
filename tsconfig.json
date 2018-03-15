@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "lib": ["es2017"],
+    "module": "commonjs",
+    "outDir": "dist",
+    "sourceMap": true
+  },
+  "include": [
+    "index.ts"
+  ],
+  "typeRoots": ["./node_modules/@types"],
+  "exclude": [
+    "node_modules"
+  ]
+}

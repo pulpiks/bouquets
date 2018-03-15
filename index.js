@@ -1,13 +1,10 @@
-const service = require('./service');
-
+var service = require('./service');
 process.stdin.setEncoding('utf8');
-
-const bloomonService = new service();
-
+var bloomonService = new service();
 process.stdin.pipe(require('split')())
-    .on('data', (line) => {
-        bloomonService.processInput(line);
-    })
-    .on('end', () => {
-        console.log('end');
-    });
+    .on('data', function (line) {
+    bloomonService.processInput(line);
+})
+    .on('end', function () {
+    console.log('end');
+});

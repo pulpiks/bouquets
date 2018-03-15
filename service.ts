@@ -1,30 +1,29 @@
 const debug = require('debug')('service');
 
-const {
-    STAGE_PROCESSING_FLOWER,
-    STAGE_PROCESSING_FORMULAS
-} = require('./constants');
+import STAGE_PROCESSING from './constants';
 
-class Service {
+export default class Service {
+    stage: STAGE_PROCESSING= STAGE_PROCESSING.Formaulas;
+    neededBouquets: Object = {};
+    resultBouquets: string[] = [];
+    flowers: Object = {
+        'L': {},
+        'S': {}
+    };
+    line: string;
+
     constructor() {
-        this.stage = STAGE_PROCESSING_FORMULAS;
-        this.neededBouquets = {};
-        this.resultBouquets = [];
-        this.flowers = {
-            'L': {},
-            'S': {}
-        };
     }
 
-    processInput(line) {
+    processInput(line: string) {
         this.line = line;
 
         if (this.line.length === 0 || !this.line.trim()) {
-            this.stage = STAGE_PROCESSING_FLOWER;
+            this.stage = STAGE_PROCESSING.Flower;
             return ;
         }
         try {
-            if (this.stage === STAGE_PROCESSING_FORMULAS) {
+            if (this.stage === STAGE_PROCESSING.Formaulas) {
                 this.analyzeBouquetSpec(this.line);
             }
             else {
@@ -35,7 +34,7 @@ class Service {
             }
         }
         catch (e) {
-            throw new Error('smth happend');
+            throw new Error(e);
         }
     }
 
@@ -48,7 +47,7 @@ class Service {
         });
     }
 
-    showCreatedBouquet(design, size, flowers) {
+    showCreatedBouquet(design:string, size: string, flowers: {}) {
         //output looks like: AL10r5t8d7l
 
         const flowersPart = Object.keys(flowers).reduce((str, species) => {
@@ -60,8 +59,8 @@ class Service {
 
 
     countFlowers(flowers) {
-        let count = 0;
-        Object.values(flowers).forEach((c) => {
+        let count:number = 0;
+        Object.values(flowers).forEach((c:number) => {
             count += c;
         });
         return count;
@@ -70,7 +69,7 @@ class Service {
     removeFlowers(storage, flowers) {
         Object
             .entries(flowers)
-            .forEach(([species, count]) => {
+            .forEach(([species, count]:[string, number]) => {
                 // console.log(flowers, storage, '+', storage[species], count, species, JSON.stringify(storage[species]));
                 storage[species] -= count;
             });
@@ -148,6 +147,7 @@ class Service {
     }
 
     collectFlowers(formulaFlower) {
+        debugger;
         if (formulaFlower.length !== 2) {
             return ;
         }
@@ -190,7 +190,6 @@ class Service {
 
 }
 
-module.exports = Service;
 
 
 // function sortBouquetsByNumberOfFlowers() {
