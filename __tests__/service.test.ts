@@ -1,6 +1,6 @@
-const Service = require('./service');
+import Service from '../service';
 
-let bloomonService;
+let bloomonService: Service;
 
 const arr = [
     'AS2a3b4c9',

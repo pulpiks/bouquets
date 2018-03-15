@@ -4,16 +4,28 @@
   },
   "scripts": {
     "start-crrome-debug": "node --inspect-brk index.js",
-    "start": "npm run tsc && node dist/index.js",
-    "test": "jest service.test.js",
+    "start": "npm run tsc && npm run test && node dist/index.js",
+    "test": "jest service.test.ts",
     "tsc": "tsc"
   },
   "devDependencies": {
     "@types/node": "^9.4.7",
     "debug": "^3.1.0",
     "jest": "^22.4.2",
+    "ts-jest": "^22.4.1",
     "ts-node": "^5.0.1",
     "typescript": "^2.7.2",
     "typescript-eslint-parser": "^14.0.0"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "/__tests__/.*\\.(ts|tsx|js)$"
   }
 }
