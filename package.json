@@ -5,7 +5,7 @@
   "scripts": {
     "start-crrome-debug": "node --inspect-brk index.js",
     "start": "npm run tsc && npm run test && node dist/index.js",
-    "test": "jest service.test.ts",
+    "test": "jest",
     "tsc": "tsc",
     "lint": "tslint --fix '*.ts'"
   },
