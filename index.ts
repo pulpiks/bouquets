@@ -1,13 +1,13 @@
-import Service from './service';
+import Service from "./service";
 
-process.stdin.setEncoding('utf8');
+process.stdin.setEncoding("utf8");
 
 const bloomonService = new Service();
 
-process.stdin.pipe(require('split')())
-    .on('data', (line) => {
+process.stdin.pipe(require("split")())
+    .on("data", (line) => {
         bloomonService.processInput(line);
     })
-    .on('end', () => {
-        console.log('end');
+    .on("end", () => {
+        console.log("end");
     });
